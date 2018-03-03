@@ -13,6 +13,10 @@ https://www.udemy.com/the-complete-guide-to-angular-2/learn/v4/t/lecture/6655594
         - [1.3.2. TextBox](#132-textbox)
             - [1.3.2.1. Adding Forms Module](#1321-adding-forms-module)
     - [1.4. Adding Bootstrap](#14-adding-bootstrap)
+    - [1.5. Module Loading](#15-module-loading)
+        - [1.5.1. The App Module](#151-the-app-module)
+        - [1.5.2. The App Component](#152-the-app-component)
+        - [1.5.3. Data Model](#153-data-model)
 
 <!-- /TOC -->
 
@@ -109,3 +113,80 @@ npm install --save bootstrap@3
 - If `ng serve` is already running, stop it with `Control+C` (mac) and run it again.
 
 Go to http://localhost:4200, inspect page, it will have bootstrap `style` tag  in `head` section.
+
+## 1.5. Module Loading
+
+-  The `ng serve` command adds additional `script`tags to the end of `index.html` before sending it to the browser.
+- It uses the `src/main.ts` as the root script.
+
+### 1.5.1. The App Module
+The current default of `src/main.ts` loads `/app/app.module.ts` with the following code:
+
+- It imports `AppModule` from the `ts` file:
+```ts
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+
+import { AppModule } from './app/app.module';
+
+```
+- Then it starts the `AppModule` using this code:
+```ts
+    platformBrowserDynamic().bootstrapModule(AppModule)
+    .catch(err => console.log(err));
+```
+
+- The `AppModule` declares an `@NgModule` that is loaded above.
+
+
+### 1.5.2. The App Component
+
+The `AppModule` declaration loads the `AppComponent` from `app.component.ts`
+
+```ts
+import { NgModule } from '@angular/core';
+import { AppComponent } from './app.component';
+...
+@NgModule
+{
+    declarations: [AppComponent],
+    ...
+}
+export class AppModule { }
+```
+
+The `AppComponent` is annotated as a `@Component` with `selector`, `templateUrl` and `styleUrls`. 
+
+```ts
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent{...}
+```
+
+
+The `selector` **app-root** is the **HTML Tag Name** used to embed the component in `src/index.html`
+
+```html
+<body>
+  <app-root>Loading...</app-root>
+</body>
+```
+
+### 1.5.3. Data Model
+
+The `AppComponent` also declares the data model as below.
+
+```ts
+export class AppComponent {
+  title = 'MyFirstPage';
+  name = 'Angular';
+}
+```
+
+
+
+
