@@ -1,9 +1,22 @@
-# Angular 5 Complete Guide
+# 1. Angular 5 Complete Guide
 
 Course Link:
 https://www.udemy.com/the-complete-guide-to-angular-2/learn/v4/t/lecture/6655594?start=0
 
-## Development Environment
+<!-- TOC -->
+
+- [1. Angular 5 Complete Guide](#1-angular-5-complete-guide)
+    - [1.1. Development Environment](#11-development-environment)
+    - [1.2. Create New Angular Project](#12-create-new-angular-project)
+    - [1.3. Simple Data Binding](#13-simple-data-binding)
+        - [1.3.1. Label](#131-label)
+        - [1.3.2. TextBox](#132-textbox)
+            - [1.3.2.1. Adding Forms Module](#1321-adding-forms-module)
+    - [1.4. Adding Bootstrap](#14-adding-bootstrap)
+
+<!-- /TOC -->
+
+## 1.1. Development Environment
 
 - Install Node
 - Install Angular CLI
@@ -13,7 +26,7 @@ https://www.udemy.com/the-complete-guide-to-angular-2/learn/v4/t/lecture/6655594
     ```
 
 
-## Create New Angular Project
+## 1.2. Create New Angular Project
 
 Create a new project using the CLI:
 
@@ -28,7 +41,7 @@ ng serve
 It will run the server at http://localhost:4200
 
 
-## Simple Data Binding
+## 1.3. Simple Data Binding
 
 In `app.component.ts`, add a `name` property to the model.
 
@@ -39,17 +52,17 @@ export class AppComponent {
 }
 ```
 
-### Label
+### 1.3.1. Label
 In `app.component.html', use the name property in the label databinding as below:
 
 ```html
 <b>{{name}}</b>
 ```
 
-### TextBox
+### 1.3.2. TextBox
 The textbox functionality requires `FormsModule`.
 
-#### Adding Forms Module
+#### 1.3.2.1. Adding Forms Module
 
 In `app.module.ts` add the TypeScript import of `FormsModule` as shown below:
 
@@ -77,8 +90,22 @@ We can add the databinding for textbox below in `app.component.html`:
 <input type="text" [(ngModel)]="name">
 ```
 
-## Adding Bootstrap
-Add Bootstrap 3 to the project:
+## 1.4. Adding Bootstrap
+- Add Bootstrap 3 to the project:
 ```bash
 npm install --save bootstrap@3
 ```
+- In the `node_modules` folder, find `bootstrap` and within that look for `bootstrap.min.cs` under dist folder, right-click and get relative path (in WebStorm).
+
+- In `.angular-cli.json`, under `styles` section, add this path, but adjust it so that it is relative to `index.html` as opposed to `.angular-cli.json`
+
+```json
+      "styles": [
+        "../node_modules/bootstrap/dist/css/bootstrap.min.css",
+        "styles.css"
+      ],
+```
+
+- If `ng serve` is already running, stop it with `Control+C` (mac) and run it again.
+
+Go to http://localhost:4200, inspect page, it will have bootstrap `style` tag  in `head` section.
