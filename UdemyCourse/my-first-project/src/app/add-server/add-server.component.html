@@ -1,11 +1,15 @@
-<div id="addServer" [class]=" 'col-sm-3 ' + getAllowed()" >
+<div id="addServer" [class]=" 'col-sm-6 ' + getAllowed()" >
+  <app-success-alert *ngIf="serverCreated; else addServer" ></app-success-alert>
   <div id="content" (click)="onCreating()">{{getStatus()}}</div>
-  <input type="text" class="form-control"
-         placeholder="Name" [class]="showInput()" (input)="onUpdateServerName($event)"/>
-  <div id="newServerName" [class]="showInput()">{{newServerName}}</div>
-  <input type="text" class="form-control"
-         placeholder="Name" [class]="showInput()" [(ngModel)] = "newServerName"/>
-
-
+  <ng-template #addServer>
+  <div id="add" [class]="showInput()">
+    <input type="text" class="form-control"
+           placeholder="Name"  (input)="onUpdateServerName($event)"/>
+    <div id="newServerName" >{{newServerName}}</div>
+    <input type="text" class="form-control"
+           placeholder="Name"  [(ngModel)] = "newServerName"/>
+    <input type="button" class="btn btn-primary" value="Submit" (click)="createServer()"/>
+  </div>
+  </ng-template>
 </div>
 

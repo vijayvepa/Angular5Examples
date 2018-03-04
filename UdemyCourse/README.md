@@ -26,13 +26,15 @@
         - [1.6.4. Using the CLI](#164-using-the-cli)
     - [1.7. Inline Template](#17-inline-template)
     - [1.8. Styles](#18-styles)
-    - [Data Binding](#data-binding)
-        - [String Interpolation](#string-interpolation)
-        - [Property Binding](#property-binding)
-        - [Event Binding](#event-binding)
-            - [Buttons](#buttons)
-            - [Text Boxes](#text-boxes)
-        - [Two-Way Binding](#two-way-binding)
+    - [1.9. Data Binding](#19-data-binding)
+        - [1.9.1. String Interpolation](#191-string-interpolation)
+        - [1.9.2. Property Binding](#192-property-binding)
+        - [1.9.3. Event Binding](#193-event-binding)
+            - [1.9.3.1. Buttons](#1931-buttons)
+            - [1.9.3.2. Text Boxes](#1932-text-boxes)
+        - [1.9.4. Two-Way Binding](#194-two-way-binding)
+    - [The ng-if Directive](#the-ng-if-directive)
+        - [Else Conditions](#else-conditions)
 
 <!-- /TOC -->
 
@@ -317,11 +319,11 @@ div{
 
 I would expect the server blocks to have borders in a typical html application, but in angular, they won't. (awesome! we have local styles!)
 
-## Data Binding
+## 1.9. Data Binding
 
 Data can be bound to markup using **string interpolation**, **property binding**, **event binding** and **two-way binding**.
 
-### String Interpolation
+### 1.9.1. String Interpolation
 
 In `server.component.ts` add two properties and a getter:
 
@@ -368,7 +370,7 @@ This will be output as below:
 
 [StringInterpolation]: Images/StringInterpolation.png
 
-### Property Binding
+### 1.9.2. Property Binding
 
 - Add a new component called `add-server`and add the following properties in `add-server.component.ts`:
 
@@ -408,9 +410,9 @@ export class AddServerComponent implements OnInit {
 
 - This will rewrite the `class` attribute after 2 seconds to `col-sm-3 allowed`.
 
-### Event Binding
+### 1.9.3. Event Binding
 
-#### Buttons
+#### 1.9.3.1. Buttons
 In `add-server.component.html` we add an `div` tag that triggers a typescript method upon the `click` event, as shown below:
 
 ```html
@@ -424,7 +426,7 @@ This event is handled in the typescript code as shown below:
     }
 ```
 
-#### Text Boxes
+#### 1.9.3.2. Text Boxes
 For capturing the user-entered data from an `input` control, we can use the `(input)` event, along with `$event` parameter in the html .
 
 ```html
@@ -443,7 +445,7 @@ This event can then be processed on the typescript code as shown below:
 
 NOTE: we can deduce the types by debugging with `console.log` and looking at the browser inspect window.
 
-### Two-Way Binding
+### 1.9.4. Two-Way Binding
 An alternative, streamlined approach to capture user input is two-way binding. It requires `FormsModule` in the `app.module.ts` as shown below:
 
 ```ts
@@ -472,3 +474,46 @@ export class AddServerComponent implements OnInit {
     ...
 }
 ```
+
+## The ng-if Directive
+
+We can include or omit a html section in the DOM markup (as opposed to CSS show/collapse) using the ng-if directive. (useful for authorizations)
+
+In the `add-servers.component.html` we show a success box when server is created, using this markup.
+
+```html
+<app-success-alert *ngIf="serverCreated" ></app-success-alert>
+```
+Where `serverCreated` is a property on the typescript class.
+
+### Else Conditions
+We can have an else condition by declaring an ng-template region on the markup and it will replace the markup on this tag with that.
+
+```html
+   <div id="content" (click)="onCreating()">{{getStatus()}}</div>
+  <ng-template #addServer>
+  <div id="add" [class]="showInput()">
+    ...
+  </div>
+  </ng-template>
+```
+
+We can then use this region in the else clause as below:
+
+```html
+<app-success-alert *ngIf="serverCreated; else addServer" ></app-success-alert>
+```
+
+Here's how if condition is shown:
+
+![NgIf]
+
+[NgIf]: Images/NgIf.png
+
+Here's how else condition is shown. 
+
+![NgElse]
+
+[NgElse]: Images/NgElse.png
+
+**NOTE**: The `ng-template` markup is defined below the `div id="content"` section, but it is rendered above it. This is because it "replaces" the section for `app-success-alert`.

@@ -1,0 +1,16 @@
+<div class="container">
+  <h4>Binding Assignment</h4>
+
+  <div>
+    <input type="text" placeholder="user name" [(ngModel)]="username"/>
+  </div>
+
+  <div>
+    <span>{{username}}</span>
+  </div>
+
+  <div>
+    <button class="btn btn-default" [disabled]="!allowReset()" (click)="reset()">Reset</button>
+  </div>
+
+</div>

@@ -10,7 +10,7 @@ export class AddServerComponent implements OnInit {
   allow = false;
   creating = false;
   newServerName = '';
-
+  serverCreated = false;
   constructor() {
     setTimeout( () => {this.allow = true; } , 2000);
   }
@@ -29,11 +29,16 @@ export class AddServerComponent implements OnInit {
 
   onCreating() {
     this.creating = !this.creating;
+    this.serverCreated = false;
   }
 
   onUpdateServerName(event: Event) {
     const target = <HTMLInputElement>event.target;
     this.newServerName = target.value;
+  }
+
+  createServer() {
+    setTimeout(() => {this.serverCreated = true; this.creating = false; }, 2000);
   }
 
   ngOnInit() {
