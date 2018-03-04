@@ -1,7 +1,9 @@
 # 1. Angular 5 Complete Guide
 
-Course Link:
-https://www.udemy.com/the-complete-guide-to-angular-2/learn/v4/t/lecture/6655594?start=0
+**Course**:
+[Angular 5 (formerly Angular 2) - The Complete Guide](https://www.udemy.com/the-complete-guide-to-angular-2/learn/v4/t/lecture/6655594?start=0) By Maximilian Schwarzmuller
+
+
 
 <!-- TOC -->
 
