@@ -24,6 +24,7 @@
         - [1.6.2. Adding to Module](#162-adding-to-module)
         - [1.6.3. Using the Component](#163-using-the-component)
         - [1.6.4. Using the CLI](#164-using-the-cli)
+            - [1.6.4.1. Nested Components](#1641-nested-components)
     - [1.7. Inline Template](#17-inline-template)
     - [1.8. Styles](#18-styles)
     - [1.9. Data Binding](#19-data-binding)
@@ -269,6 +270,14 @@ ng g c server
 ```
 
 where `server` is the component name we want to create. 
+
+#### 1.6.4.1. Nested Components
+
+If we wanted to create a subcomponent of server (example: serverdetail), we can use this syntax:
+
+```bash
+ng g c server/server-detail
+```
 
 ## 1.7. Inline Template
 
