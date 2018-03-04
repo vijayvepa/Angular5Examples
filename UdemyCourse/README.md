@@ -23,6 +23,9 @@
         - [1.6.1. Creating Component](#161-creating-component)
         - [1.6.2. Adding to Module](#162-adding-to-module)
         - [1.6.3. Using the Component](#163-using-the-component)
+        - [1.6.4. Using the CLI](#164-using-the-cli)
+    - [1.7. Inline Template](#17-inline-template)
+    - [1.8. Styles](#18-styles)
 
 <!-- /TOC -->
 
@@ -237,7 +240,73 @@ export class AppModule { }
     </div>
 ```
 
+### 1.6.4. Using the CLI
+
+We can script the above steps using the `angular-cli` command on the project root folder below:
+
+```bash
+ng generate component server
+```
+
+Alternatively
+
+```bash
+ng g c server
+```
+
+where `server` is the component name we want to create. 
+
+## 1.7. Inline Template
+
+We can setup components with inline template as below. It is useful when HTML is less than 3 lines.
+In `servers.component.ts`(NOTE the backtick)
+
+```ts
+@Component({
+  selector: 'app-servers',
+  template: `
+    <app-server>
+    <app-server>
+  `
+  styleUrls: ['./servers.component.css']
+})
+export class ServersComponent
+```
+
+## 1.8. Styles
+
+We can setup component-specific styles in the `styleUrls`. We can define **global** styles in the css files and yet they are applied *only* to the component and not to the nested components
+
+- For example, in `servers.component.css`, I defined *div* style as:
+
+```css
+div{
+  border:1px solid black;
+}
+``` 
+
+- I embedded `app-server` components in the servers component html:
+
+```html
+<h4>Servers</h4>
+<div class="row">
+<app-server></app-server>
+<app-server></app-server>
+</div>
+
+```
+
+- `app-server` component also has `div` elements
+
+```html
+    <div class="col-sm-3">
+    <p>The Server Component</p>
+    </div>
+```
+![NestedStyles]
+
+[NestedStyles]: Images/NestedStyles.png
 
 
-
+I would expect the server blocks to have borders in a typical html application, but in angular, they won't. (awesome! we have local styles!)
 
