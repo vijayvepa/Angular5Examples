@@ -1,14 +1,6 @@
 <h4>Servers</h4>
 <div class="row">
-<app-server></app-server>
-<app-server></app-server>
-  <app-server></app-server>
-  <app-server></app-server>
-  <app-server></app-server>
-  <app-server></app-server>
-  <app-server></app-server>
-  <app-server></app-server>
-  <app-server></app-server>
-  <app-server></app-server>
+<app-server *ngFor="let x of servers"></app-server>
   <app-add-server></app-add-server>
+  <input type="button" class="btn btn-primary" value="add" (click)="addServer()"/>
 </div>

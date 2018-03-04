@@ -7,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ServersComponent implements OnInit {
 
+  servers = ['server1',  'server2'];
+
   constructor() { }
 
   ngOnInit() {
   }
 
+  addServer() {
+    this.servers.push('newServer');
+  }
 }
