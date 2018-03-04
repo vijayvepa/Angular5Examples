@@ -39,6 +39,7 @@
         - [1.10.2. ngStyles Directive](#1102-ngstyles-directive)
         - [1.10.3. ngClass Directive](#1103-ngclass-directive)
         - [1.10.4. ngFor Directive](#1104-ngfor-directive)
+            - [1.10.4.1. Index Data](#11041-index-data)
 
 <!-- /TOC -->
 
@@ -595,3 +596,25 @@ export class ServersComponent implements OnInit {
 ```
 
 NOTE: We need to prefix the directive with a * so that it will modify the DOM.
+
+#### 1.10.4.1. Index Data
+
+We can get the current index of `ngFor` using this syntax:
+
+```html
+<div *ngFor="let x of servers; let y = index">
+
+    
+</div>
+```
+We can then use this variable in the inline template.
+
+```html
+  <div *ngFor="let log of secretAccessLogs; let i = index">
+    <div [ngStyle]="{backgroundColor: getColor(i)}"
+      [ngClass]="{light: i > 6}">
+      {{i}}
+    </div>
+  </div>
+
+```

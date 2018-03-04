@@ -9,10 +9,11 @@ import { WarningAlertComponent } from './warning-alert/warning-alert.component';
 import { SuccessAlertComponent } from './success-alert/success-alert.component';
 import { AddServerComponent } from './add-server/add-server.component';
 import { BindingAssignmentComponent } from './binding-assignment/binding-assignment.component';
+import { DirectivesAssignmentComponent } from './directives-assignment/directives-assignment.component';
 
 
 @NgModule({
-  declarations: [AppComponent, ServerComponent, ServersComponent, WarningAlertComponent, SuccessAlertComponent, AddServerComponent, BindingAssignmentComponent],
+  declarations: [AppComponent, ServerComponent, ServersComponent, WarningAlertComponent, SuccessAlertComponent, AddServerComponent, BindingAssignmentComponent, DirectivesAssignmentComponent],
   imports: [BrowserModule, FormsModule],
   providers: [],
   bootstrap: [AppComponent]

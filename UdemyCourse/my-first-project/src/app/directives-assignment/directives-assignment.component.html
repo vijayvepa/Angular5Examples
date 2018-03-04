@@ -1,0 +1,21 @@
+<div class="container">
+  <h4>Directives Assignment</h4>
+
+  <button class="btn btn-default" (click)="accessPassword()">Display Details</button>
+
+  <div *ngIf="displayDetails">
+    <p>Secret password: Tuna</p>
+  </div>
+
+
+
+
+  <div *ngFor="let log of secretAccessLogs; let i = index">
+    <div [ngStyle]="{backgroundColor: getColor(i)}"
+      [ngClass]="{light: i > 6}">
+      {{i}}
+      {{log.accessTime}}
+    </div>
+
+  </div>
+</div>
