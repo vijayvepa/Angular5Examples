@@ -1,0 +1,23 @@
+#addServer{
+
+  color: white;
+  margin:10px;
+  padding:10px;
+}
+
+.allowed{
+  background-color: darkblue;
+}
+
+.notallowed{
+  background-color: red;
+}
+
+#content{
+  margin:10px;
+  margin-left:23px;
+  margin-bottom:20px;
+  width:10px;
+  height:10px;
+}
+

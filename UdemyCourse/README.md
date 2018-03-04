@@ -26,6 +26,9 @@
         - [1.6.4. Using the CLI](#164-using-the-cli)
     - [1.7. Inline Template](#17-inline-template)
     - [1.8. Styles](#18-styles)
+    - [Data Binding](#data-binding)
+        - [String Interpolation](#string-interpolation)
+        - [Property Binding](#property-binding)
 
 <!-- /TOC -->
 
@@ -309,4 +312,95 @@ div{
 
 
 I would expect the server blocks to have borders in a typical html application, but in angular, they won't. (awesome! we have local styles!)
+
+## Data Binding
+
+Data can be bound to markup using string interpolation, property binding.
+
+### String Interpolation
+
+In `server.component.ts` add two properties and a getter:
+
+```ts
+    export class ServerComponent {
+    id = 10;
+    status = 'online';
+
+        getServerStatus() {
+            return 'status:' + this.status;
+        }
+    }
+
+```
+
+These properties can be interpolated in `server.component.html` as below:
+
+```html
+<div class="col-sm-3" id="server">
+  <div id="id">{{id}}</div>
+  <div>{{getServerStatus()}}</div>
+</div>
+```
+
+When styled in `server.component.css`, 
+
+```css
+#server{
+  background-color: cornflowerblue;
+
+  padding: 10px;
+  margin:10px;
+  width:100px;
+}
+
+#id{
+  font-weight: bold;
+}
+
+```
+
+This will be output as below:  
+![StringInterpolation]
+
+[StringInterpolation]: Images/StringInterpolation.png
+
+### Property Binding
+
+- Add a new component called `add-server`and add the following properties in `add-server.component.ts`:
+
+```ts
+export class AddServerComponent implements OnInit {
+
+  allow = false;
+
+...
+  getAllowed() {
+    return this.allow ? 'allowed' : 'notallowed';
+  }
+...
+
+```
+
+- In the constructor, change allowed to true after 2 seconds:
+
+```ts
+export class AddServerComponent implements OnInit {
+
+  ...
+  constructor() {
+    setTimeout( () => {this.allow = true; } , 2000);
+  }
+
+
+```
+- Define Styles for allowed and not allowed as needed
+- Bind the `class` attribute of addServer as below in `add-server.component.html`
+
+```html
+<div id="addServer" [class]=" 'col-sm-3 ' + getAllowed()">
+  ...
+</div>
+```
+
+- This will rewrite the `class` attribute after 2 seconds to `col-sm-3 allowed`.
 
