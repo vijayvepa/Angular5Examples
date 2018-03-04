@@ -41,6 +41,7 @@
         - [1.10.3. ngClass Directive](#1103-ngclass-directive)
         - [1.10.4. ngFor Directive](#1104-ngfor-directive)
             - [1.10.4.1. Index Data](#11041-index-data)
+        - [Model Classes](#model-classes)
 
 <!-- /TOC -->
 
@@ -626,4 +627,22 @@ We can then use this variable in the inline template.
     </div>
   </div>
 
+```
+
+### Model Classes
+
+A model class represents data in typescript. This is a plain class with public properties and a constructor, as shown below:
+
+```ts
+export class Recipe {
+  public  name: string;
+  public description: string;
+  public imagePath: string;
+
+  constructor(name: string, description: string, imagePath: string) {
+    this.name = name;
+    this.description = description;
+    this.imagePath = imagePath;
+  }
+}
 ```
