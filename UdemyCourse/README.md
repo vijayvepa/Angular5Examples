@@ -17,6 +17,10 @@ https://www.udemy.com/the-complete-guide-to-angular-2/learn/v4/t/lecture/6655594
         - [1.5.1. The App Module](#151-the-app-module)
         - [1.5.2. The App Component](#152-the-app-component)
         - [1.5.3. Data Model](#153-data-model)
+    - [1.6. Adding Custom Component](#16-adding-custom-component)
+        - [1.6.1. Creating Component](#161-creating-component)
+        - [1.6.2. Adding to Module](#162-adding-to-module)
+        - [1.6.3. Using the Component](#163-using-the-component)
 
 <!-- /TOC -->
 
@@ -140,7 +144,7 @@ import { AppModule } from './app/app.module';
 
 ### 1.5.2. The App Component
 
-The `AppModule` declaration loads the `AppComponent` from `app.component.ts`
+The `AppModule` declaration loads the `AppComponent` from `app.component.ts` and marks it as `bootstrap` (starter).
 
 ```ts
 import { NgModule } from '@angular/core';
@@ -150,6 +154,7 @@ import { AppComponent } from './app.component';
 {
     declarations: [AppComponent],
     ...
+    bootstrap: [AppComponent]
 }
 export class AppModule { }
 ```
@@ -186,6 +191,50 @@ export class AppComponent {
   name = 'Angular';
 }
 ```
+
+## 1.6. Adding Custom Component
+
+### 1.6.1. Creating Component
+- Add a new folder under `app` with the name of the component we want to add (example: `server`)
+- Add a new file `server.component.ts` and declare a `typescript` class as below:
+
+```ts
+export class ServerComponent {
+
+}
+```
+
+- Annotate (decorate) it with a `@Component` decoration as below.
+```ts
+@Component({
+  selector: 'app-server',
+  templateUrl: './server.component.html'
+})
+```
+- By convention, selector names start with `"app"`.
+
+### 1.6.2. Adding to Module
+- In the `app.module.ts` add `ServerComponent` to `declarations`
+
+```ts
+import {ServerComponent} from './server/server.component';
+
+@NgModule({
+  declarations: [..., ServerComponent],
+  ...
+})
+export class AppModule { }
+```
+
+### 1.6.3. Using the Component
+- In the `app.component.html` we can use the `selector` defined earlier as an HTML tag.
+
+```html
+    <div class="col-sm-3">
+        <app-server></app-server>
+    </div>
+```
+
 
 
 
