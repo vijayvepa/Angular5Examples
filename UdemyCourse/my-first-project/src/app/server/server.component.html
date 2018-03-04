@@ -1,4 +1,5 @@
-<div class="col-sm-3" id="server">
+<div class="col-sm-3" id="server" [ngStyle]="{backgroundColor: getColor()}"
+     [ngClass]="{online: status === 'online'}">
   <div id="id">{{id}}</div>
   <div>{{getServerStatus()}}</div>
 </div>
