@@ -8,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
 export class AddServerComponent implements OnInit {
 
   allow = false;
+  creating = false;
+  newServerName = '';
 
   constructor() {
     setTimeout( () => {this.allow = true; } , 2000);
@@ -15,6 +17,23 @@ export class AddServerComponent implements OnInit {
 
   getAllowed() {
     return this.allow ? 'allowed' : 'notallowed';
+  }
+
+  getStatus() {
+    return this.creating ? '...' : '+';
+  }
+
+  showInput() {
+    return this.creating ? 'visible' : 'invisible';
+  }
+
+  onCreating() {
+    this.creating = !this.creating;
+  }
+
+  onUpdateServerName(event: Event) {
+    const target = <HTMLInputElement>event.target;
+    this.newServerName = target.value;
   }
 
   ngOnInit() {

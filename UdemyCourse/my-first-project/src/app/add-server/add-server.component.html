@@ -1,3 +1,11 @@
-<div id="addServer" [class]=" 'col-sm-3 ' + getAllowed()">
-  <div id="content">+</div>
+<div id="addServer" [class]=" 'col-sm-3 ' + getAllowed()" >
+  <div id="content" (click)="onCreating()">{{getStatus()}}</div>
+  <input type="text" class="form-control"
+         placeholder="Name" [class]="showInput()" (input)="onUpdateServerName($event)"/>
+  <div id="newServerName" [class]="showInput()">{{newServerName}}</div>
+  <input type="text" class="form-control"
+         placeholder="Name" [class]="showInput()" [(ngModel)] = "newServerName"/>
+
+
 </div>
+

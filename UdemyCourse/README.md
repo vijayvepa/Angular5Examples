@@ -29,6 +29,10 @@
     - [Data Binding](#data-binding)
         - [String Interpolation](#string-interpolation)
         - [Property Binding](#property-binding)
+        - [Event Binding](#event-binding)
+            - [Buttons](#buttons)
+            - [Text Boxes](#text-boxes)
+        - [Two-Way Binding](#two-way-binding)
 
 <!-- /TOC -->
 
@@ -315,7 +319,7 @@ I would expect the server blocks to have borders in a typical html application, 
 
 ## Data Binding
 
-Data can be bound to markup using string interpolation, property binding.
+Data can be bound to markup using **string interpolation**, **property binding**, **event binding** and **two-way binding**.
 
 ### String Interpolation
 
@@ -404,3 +408,67 @@ export class AddServerComponent implements OnInit {
 
 - This will rewrite the `class` attribute after 2 seconds to `col-sm-3 allowed`.
 
+### Event Binding
+
+#### Buttons
+In `add-server.component.html` we add an `div` tag that triggers a typescript method upon the `click` event, as shown below:
+
+```html
+<div id="content" (click)="onCreating()">...</div>
+```
+This event is handled in the typescript code as shown below:
+
+```ts
+    onCreating() {
+        this.creating = !this.creating;
+    }
+```
+
+#### Text Boxes
+For capturing the user-entered data from an `input` control, we can use the `(input)` event, along with `$event` parameter in the html .
+
+```html
+    <input type="text" class="form-control"
+            placeholder="Name" [class]="showInput()" (input)="onUpdateServerName($event)"/>
+```
+
+This event can then be processed on the typescript code as shown below:
+
+```ts
+  onUpdateServerName(event: Event) {
+    const target = <HTMLInputElement>event.target;
+    this.newServerName = target.value;
+  }
+```
+
+NOTE: we can deduce the types by debugging with `console.log` and looking at the browser inspect window.
+
+### Two-Way Binding
+An alternative, streamlined approach to capture user input is two-way binding. It requires `FormsModule` in the `app.module.ts` as shown below:
+
+```ts
+import {FormsModule} from '@angular/forms';
+
+@NgModule({
+  ...
+  imports: [BrowserModule, FormsModule],
+  ...
+})
+export class AppModule { }
+```
+
+Once we have this, we can use `[(ngModel)]` two-way binding attribute on the markup.
+
+```html
+<input type="text" class="form-control"
+         placeholder="Name" [class]="showInput()" [(ngModel)] = "newServerName"/>
+```
+
+Where `newServerName` is a property on the component class.
+
+```ts
+export class AddServerComponent implements OnInit {
+   newServerName = '';
+    ...
+}
+```

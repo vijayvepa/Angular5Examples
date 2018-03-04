@@ -1,6 +1,6 @@
 #addServer{
 
-  color: white;
+
   margin:10px;
   padding:10px;
 }
@@ -13,7 +13,20 @@
   background-color: red;
 }
 
+.visible{
+  display:block;
+}
+
+.invisible{
+  display:none;
+}
+
+#input{
+  color: black;
+}
+
 #content{
+  color: white;
   margin:10px;
   margin-left:23px;
   margin-bottom:20px;
