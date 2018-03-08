@@ -646,3 +646,12 @@ export class Recipe {
   }
 }
 ```
+
+Alternatively we can declare it as below:
+
+```ts
+export class Recipe {
+  
+  constructor(public name: string, public description: string, public imagePath: string) { }
+}
+```
