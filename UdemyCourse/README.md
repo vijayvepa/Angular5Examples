@@ -10,38 +10,41 @@
 - [1. Angular 5 Complete Guide](#1-angular-5-complete-guide)
     - [1.1. Development Environment](#11-development-environment)
     - [1.2. Create New Angular Project](#12-create-new-angular-project)
-    - [1.3. Simple Data Binding](#13-simple-data-binding)
-        - [1.3.1. Label](#131-label)
-        - [1.3.2. TextBox](#132-textbox)
-            - [1.3.2.1. Adding Forms Module](#1321-adding-forms-module)
-    - [1.4. Adding Bootstrap](#14-adding-bootstrap)
-    - [1.5. Module Loading](#15-module-loading)
-        - [1.5.1. The App Module](#151-the-app-module)
-        - [1.5.2. The App Component](#152-the-app-component)
-        - [1.5.3. Data Model](#153-data-model)
-    - [1.6. Adding Custom Component](#16-adding-custom-component)
-        - [1.6.1. Creating Component](#161-creating-component)
-        - [1.6.2. Adding to Module](#162-adding-to-module)
-        - [1.6.3. Using the Component](#163-using-the-component)
-        - [1.6.4. Using the CLI](#164-using-the-cli)
-            - [1.6.4.1. Nested Components](#1641-nested-components)
-    - [1.7. Inline Template](#17-inline-template)
-    - [1.8. Styles](#18-styles)
-    - [1.9. Data Binding](#19-data-binding)
-        - [1.9.1. String Interpolation](#191-string-interpolation)
-        - [1.9.2. Property Binding](#192-property-binding)
-        - [1.9.3. Event Binding](#193-event-binding)
-            - [1.9.3.1. Buttons](#1931-buttons)
-            - [1.9.3.2. Text Boxes](#1932-text-boxes)
-        - [1.9.4. Two-Way Binding](#194-two-way-binding)
-    - [1.10. Built-in Directives](#110-built-in-directives)
-        - [1.10.1. The ng-if Directive](#1101-the-ng-if-directive)
-            - [1.10.1.1. Else Conditions](#11011-else-conditions)
-        - [1.10.2. ngStyles Directive](#1102-ngstyles-directive)
-        - [1.10.3. ngClass Directive](#1103-ngclass-directive)
-        - [1.10.4. ngFor Directive](#1104-ngfor-directive)
-            - [1.10.4.1. Index Data](#11041-index-data)
-        - [Model Classes](#model-classes)
+    - [1.3. Debugging](#13-debugging)
+        - [1.3.1. With WebStorm](#131-with-webstorm)
+            - [1.3.1.1. References](#1311-references)
+    - [1.4. Simple Data Binding](#14-simple-data-binding)
+        - [1.4.1. Label](#141-label)
+        - [1.4.2. TextBox](#142-textbox)
+            - [1.4.2.1. Adding Forms Module](#1421-adding-forms-module)
+    - [1.5. Adding Bootstrap](#15-adding-bootstrap)
+    - [1.6. Module Loading](#16-module-loading)
+        - [1.6.1. The App Module](#161-the-app-module)
+        - [1.6.2. The App Component](#162-the-app-component)
+        - [1.6.3. Data Model](#163-data-model)
+    - [1.7. Adding Custom Component](#17-adding-custom-component)
+        - [1.7.1. Creating Component](#171-creating-component)
+        - [1.7.2. Adding to Module](#172-adding-to-module)
+        - [1.7.3. Using the Component](#173-using-the-component)
+        - [1.7.4. Using the CLI](#174-using-the-cli)
+            - [1.7.4.1. Nested Components](#1741-nested-components)
+    - [1.8. Inline Template](#18-inline-template)
+    - [1.9. Styles](#19-styles)
+    - [1.10. Data Binding](#110-data-binding)
+        - [1.10.1. String Interpolation](#1101-string-interpolation)
+        - [1.10.2. Property Binding](#1102-property-binding)
+        - [1.10.3. Event Binding](#1103-event-binding)
+            - [1.10.3.1. Buttons](#11031-buttons)
+            - [1.10.3.2. Text Boxes](#11032-text-boxes)
+        - [1.10.4. Two-Way Binding](#1104-two-way-binding)
+    - [1.11. Built-in Directives](#111-built-in-directives)
+        - [1.11.1. The ng-if Directive](#1111-the-ng-if-directive)
+            - [1.11.1.1. Else Conditions](#11111-else-conditions)
+        - [1.11.2. ngStyles Directive](#1112-ngstyles-directive)
+        - [1.11.3. ngClass Directive](#1113-ngclass-directive)
+        - [1.11.4. ngFor Directive](#1114-ngfor-directive)
+            - [1.11.4.1. Index Data](#11141-index-data)
+        - [1.11.5. Model Classes](#1115-model-classes)
 
 <!-- /TOC -->
 
@@ -53,6 +56,9 @@
     ```bash
     sudo npm install -g @angluar/cli
     ```
+
+
+
 
 
 ## 1.2. Create New Angular Project
@@ -70,7 +76,31 @@ ng serve
 It will run the server at http://localhost:4200
 
 
-## 1.3. Simple Data Binding
+## 1.3. Debugging
+
+### 1.3.1. With WebStorm
+
+- In Chrome, Install **JetBrains IDE Support** Plugin (https://chrome.google.com/webstore/detail/jetbrains-ide-support/hmhgeddbohgjknpmjagkdomcpobmllji?hl=en)
+
+- Start `ng serve`
+
+- In WebStorm, Add Debug  Configuration as below: 
+    - Edit Configurations -> + -> JavaScript Debug
+    - Choose any name
+    - URL: http://localhost:4200
+
+![Debugging]
+
+[Debugging]: images/Debugging.png
+    
+- Put a breakpoint in code
+- Click the "Debug" button 
+
+#### 1.3.1.1. References
+- https://blog.jetbrains.com/webstorm/2017/01/debugging-angular-apps/
+-  https://www.youtube.com/watch?v=CdXoeVRN1JU
+
+## 1.4. Simple Data Binding
 
 In `app.component.ts`, add a `name` property to the model.
 
@@ -81,17 +111,17 @@ export class AppComponent {
 }
 ```
 
-### 1.3.1. Label
+### 1.4.1. Label
 In `app.component.html', use the name property in the label databinding as below:
 
 ```html
 <b>{{name}}</b>
 ```
 
-### 1.3.2. TextBox
+### 1.4.2. TextBox
 The textbox functionality requires `FormsModule`.
 
-#### 1.3.2.1. Adding Forms Module
+#### 1.4.2.1. Adding Forms Module
 
 In `app.module.ts` add the TypeScript import of `FormsModule` as shown below:
 
@@ -119,7 +149,7 @@ We can add the databinding for textbox below in `app.component.html`:
 <input type="text" [(ngModel)]="name">
 ```
 
-## 1.4. Adding Bootstrap
+## 1.5. Adding Bootstrap
 - Add Bootstrap 3 to the project:
 ```bash
 npm install --save bootstrap@3
@@ -139,12 +169,12 @@ npm install --save bootstrap@3
 
 Go to http://localhost:4200, inspect page, it will have bootstrap `style` tag  in `head` section.
 
-## 1.5. Module Loading
+## 1.6. Module Loading
 
 -  The `ng serve` command adds additional `script`tags to the end of `index.html` before sending it to the browser.
 - It uses the `src/main.ts` as the root script.
 
-### 1.5.1. The App Module
+### 1.6.1. The App Module
 The current default of `src/main.ts` loads `/app/app.module.ts` with the following code:
 
 - It imports `AppModule` from the `ts` file:
@@ -163,7 +193,7 @@ import { AppModule } from './app/app.module';
 - The `AppModule` declares an `@NgModule` that is loaded above.
 
 
-### 1.5.2. The App Component
+### 1.6.2. The App Component
 
 The `AppModule` declaration loads the `AppComponent` from `app.component.ts` and marks it as `bootstrap` (starter).
 
@@ -202,7 +232,7 @@ The `selector` **app-root** is the **HTML Tag Name** used to embed the component
 </body>
 ```
 
-### 1.5.3. Data Model
+### 1.6.3. Data Model
 
 The `AppComponent` also declares the data model as below.
 
@@ -213,9 +243,9 @@ export class AppComponent {
 }
 ```
 
-## 1.6. Adding Custom Component
+## 1.7. Adding Custom Component
 
-### 1.6.1. Creating Component
+### 1.7.1. Creating Component
 - Add a new folder under `app` with the name of the component we want to add (example: `server`)
 - Add a new file `server.component.ts` and declare a `typescript` class as below:
 
@@ -234,7 +264,7 @@ export class ServerComponent {
 ```
 - By convention, selector names start with `"app"`.
 
-### 1.6.2. Adding to Module
+### 1.7.2. Adding to Module
 - In the `app.module.ts` add `ServerComponent` to `declarations`
 
 ```ts
@@ -247,7 +277,7 @@ import {ServerComponent} from './server/server.component';
 export class AppModule { }
 ```
 
-### 1.6.3. Using the Component
+### 1.7.3. Using the Component
 - In the `app.component.html` we can use the `selector` defined earlier as an HTML tag.
 
 ```html
@@ -256,7 +286,7 @@ export class AppModule { }
     </div>
 ```
 
-### 1.6.4. Using the CLI
+### 1.7.4. Using the CLI
 
 We can script the above steps using the `angular-cli` command on the project root folder below:
 
@@ -272,7 +302,7 @@ ng g c server
 
 where `server` is the component name we want to create. 
 
-#### 1.6.4.1. Nested Components
+#### 1.7.4.1. Nested Components
 
 If we wanted to create a subcomponent of server (example: serverdetail), we can use this syntax:
 
@@ -280,7 +310,7 @@ If we wanted to create a subcomponent of server (example: serverdetail), we can 
 ng g c server/server-detail
 ```
 
-## 1.7. Inline Template
+## 1.8. Inline Template
 
 We can setup components with inline template as below. It is useful when HTML is less than 3 lines.
 In `servers.component.ts`(NOTE the backtick)
@@ -297,7 +327,7 @@ In `servers.component.ts`(NOTE the backtick)
 export class ServersComponent
 ```
 
-## 1.8. Styles
+## 1.9. Styles
 
 We can setup component-specific styles in the `styleUrls`. We can define **global** styles in the css files and yet they are applied *only* to the component and not to the nested components
 
@@ -334,11 +364,11 @@ div{
 
 I would expect the server blocks to have borders in a typical html application, but in angular, they won't. (awesome! we have local styles!)
 
-## 1.9. Data Binding
+## 1.10. Data Binding
 
 Data can be bound to markup using **string interpolation**, **property binding**, **event binding** and **two-way binding**.
 
-### 1.9.1. String Interpolation
+### 1.10.1. String Interpolation
 
 In `server.component.ts` add two properties and a getter:
 
@@ -385,7 +415,7 @@ This will be output as below:
 
 [StringInterpolation]: Images/StringInterpolation.png
 
-### 1.9.2. Property Binding
+### 1.10.2. Property Binding
 
 - Add a new component called `add-server`and add the following properties in `add-server.component.ts`:
 
@@ -425,9 +455,9 @@ export class AddServerComponent implements OnInit {
 
 - This will rewrite the `class` attribute after 2 seconds to `col-sm-3 allowed`.
 
-### 1.9.3. Event Binding
+### 1.10.3. Event Binding
 
-#### 1.9.3.1. Buttons
+#### 1.10.3.1. Buttons
 In `add-server.component.html` we add an `div` tag that triggers a typescript method upon the `click` event, as shown below:
 
 ```html
@@ -441,7 +471,7 @@ This event is handled in the typescript code as shown below:
     }
 ```
 
-#### 1.9.3.2. Text Boxes
+#### 1.10.3.2. Text Boxes
 For capturing the user-entered data from an `input` control, we can use the `(input)` event, along with `$event` parameter in the html .
 
 ```html
@@ -460,7 +490,7 @@ This event can then be processed on the typescript code as shown below:
 
 NOTE: we can deduce the types by debugging with `console.log` and looking at the browser inspect window.
 
-### 1.9.4. Two-Way Binding
+### 1.10.4. Two-Way Binding
 An alternative, streamlined approach to capture user input is two-way binding. It requires `FormsModule` in the `app.module.ts` as shown below:
 
 ```ts
@@ -490,8 +520,8 @@ export class AddServerComponent implements OnInit {
 }
 ```
 
-## 1.10. Built-in Directives
-### 1.10.1. The ng-if Directive
+## 1.11. Built-in Directives
+### 1.11.1. The ng-if Directive
 
 We can include or omit a html section in the DOM markup (as opposed to CSS show/collapse) using the ng-if directive. (useful for authorizations)
 
@@ -502,7 +532,7 @@ In the `add-servers.component.html` we show a success box when server is created
 ```
 Where `serverCreated` is a property on the typescript class.
 
-#### 1.10.1.1. Else Conditions
+#### 1.11.1.1. Else Conditions
 We can have an else condition by declaring an ng-template region on the markup and it will replace the markup on this tag with that.
 
 ```html
@@ -534,7 +564,7 @@ Here's how else condition is shown.
 
 **NOTE**: The `ng-template` markup is defined below the `div id="content"` section, but it is rendered above it. This is because it "replaces" the section for `app-success-alert`.
 
-### 1.10.2. ngStyles Directive
+### 1.11.2. ngStyles Directive
 
 This allows style of an element to be dynamically generated by the typescript code.
 
@@ -548,7 +578,7 @@ In `server.component.html` we add a dynamic background color to the main `div` e
 
 - `ngStyle` attribute is *property-bound* to a javascript object which contains properties from a typical stylesheet. 
 
-### 1.10.3. ngClass Directive
+### 1.11.3. ngClass Directive
 
 This allows css classes to be added or removed dynamically based on data.
 
@@ -570,7 +600,7 @@ This allows css classes to be added or removed dynamically based on data.
 
 - The ngClass is property bound to a javascript object where property names are **css classes** and values are **Func< boolean >** -> the lambda expression that returns a boolean.
 
-### 1.10.4. ngFor Directive
+### 1.11.4. ngFor Directive
 
 This allows html element to be replicated specified number of times.
 
@@ -607,7 +637,7 @@ export class ServersComponent implements OnInit {
 
 NOTE: We need to prefix the directive with a * so that it will modify the DOM.
 
-#### 1.10.4.1. Index Data
+#### 1.11.4.1. Index Data
 
 We can get the current index of `ngFor` using this syntax:
 
@@ -629,7 +659,7 @@ We can then use this variable in the inline template.
 
 ```
 
-### Model Classes
+### 1.11.5. Model Classes
 
 A model class represents data in typescript. This is a plain class with public properties and a constructor, as shown below:
 
@@ -655,3 +685,4 @@ export class Recipe {
   constructor(public name: string, public description: string, public imagePath: string) { }
 }
 ```
+
