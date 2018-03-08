@@ -35,9 +35,11 @@
     - [1.10. Data Binding](#110-data-binding)
         - [1.10.1. String Interpolation](#1101-string-interpolation)
         - [1.10.2. Property Binding](#1102-property-binding)
+            - [Binding Component Properties](#binding-component-properties)
         - [1.10.3. Event Binding](#1103-event-binding)
             - [1.10.3.1. Buttons](#11031-buttons)
             - [1.10.3.2. Text Boxes](#11032-text-boxes)
+            - [Binding Component Events](#binding-component-events)
         - [1.10.4. Two-Way Binding](#1104-two-way-binding)
     - [1.11. Built-in Directives](#111-built-in-directives)
         - [1.11.1. The ng-if Directive](#1111-the-ng-if-directive)
@@ -483,6 +485,29 @@ export class AddServerComponent implements OnInit {
 
 - This will rewrite the `class` attribute after 2 seconds to `col-sm-3 allowed`.
 
+#### Binding Component Properties
+
+In `cmp-databinding` project, `server-element.component.ts` we add a property which can be bound from   `app.component.ts` as below:
+
+```ts
+export class ServerElementComponent implements OnInit {
+
+  @Input()
+  element: ServerElement;
+ ...
+}
+```
+
+NOTE: the `@Input()` decorator allows this property to be bound from another component.
+
+In the `app.component.html` we use this component along with the `element` property as shown below:
+
+```html
+<app-server-element  [element]="serverEl" ></app-server-element>
+```
+
+
+
 ### 1.10.3. Event Binding
 
 #### 1.10.3.1. Buttons
@@ -517,6 +542,55 @@ This event can then be processed on the typescript code as shown below:
 ```
 
 NOTE: we can deduce the types by debugging with `console.log` and looking at the browser inspect window.
+
+
+#### Binding Component Events
+
+We can declare custom events on a component (see `cmp-databinding` project, `cockpit.component.ts`) as below:
+
+```ts
+export class CockpitComponent implements OnInit {
+
+@Output()
+  serverElementCreated = new EventEmitter<ServerElement>();
+...
+
+}
+
+```
+
+NOTE: the `@Output` decorator allows the event emitter to be accessible from outside. The property needs to be of type `EventEmitter` with generic argument of the type of event data we want to send. 
+
+We can fire the events by calling the `emit` method as below:
+
+```ts
+export class CockpitComponent implements OnInit {
+  ...
+  onAddServer() {
+    this.serverElementCreated.emit(
+      new ServerElement(this.newServerName, ServerType.Server, this.newServerContent));
+  }
+}
+```
+
+We can add the handler for this event in the consumer html as below (see `app.component.html` in `cmp-databinding` project):
+
+```html
+<app-cockpit (serverElementCreated)="onServerElementAdded($event)"></app-cockpit>
+```
+
+We handle this event in the consumer as below:
+
+```ts
+export class AppComponent {
+    ...
+  onServerElementAdded(server: ServerElement) {
+    this.serverElements.push(server);
+  }
+}
+
+
+```
 
 ### 1.10.4. Two-Way Binding
 An alternative, streamlined approach to capture user input is two-way binding. It requires `FormsModule` in the `app.module.ts` as shown below:
