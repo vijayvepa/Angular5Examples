@@ -13,6 +13,7 @@
     - [1.3. Debugging](#13-debugging)
         - [1.3.1. With WebStorm](#131-with-webstorm)
             - [1.3.1.1. References](#1311-references)
+        - [1.3.2. With Chrome Developer Tools](#132-with-chrome-developer-tools)
     - [1.4. Simple Data Binding](#14-simple-data-binding)
         - [1.4.1. Label](#141-label)
         - [1.4.2. TextBox](#142-textbox)
@@ -99,6 +100,20 @@ It will run the server at http://localhost:4200
 #### 1.3.1.1. References
 - https://blog.jetbrains.com/webstorm/2017/01/debugging-angular-apps/
 -  https://www.youtube.com/watch?v=CdXoeVRN1JU
+
+### 1.3.2. With Chrome Developer Tools
+
+- Serve the app with `ng serve`
+- In chrome, go to http://localhost:4200
+- Right-Click, Inspect
+- Go to Sources tab and find the typescript files under the `webpack://` folder as shown below:
+
+![ChromeDevDebugging1]
+
+[ChromeDevDebugging1]: images/ChromeDevDebugging1.png
+
+- Set the breakpoints and reload the page.
+
 
 ## 1.4. Simple Data Binding
 
