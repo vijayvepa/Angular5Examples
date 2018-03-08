@@ -10,10 +10,11 @@
 - [1. Angular 5 Complete Guide](#1-angular-5-complete-guide)
     - [1.1. Development Environment](#11-development-environment)
     - [1.2. Create New Angular Project](#12-create-new-angular-project)
-    - [1.3. Debugging](#13-debugging)
-        - [1.3.1. With WebStorm](#131-with-webstorm)
+    - [1.3. Debugging and Inspection](#13-debugging-and-inspection)
+        - [1.3.1. Debugging With WebStorm](#131-debugging-with-webstorm)
             - [1.3.1.1. References](#1311-references)
-        - [1.3.2. With Chrome Developer Tools](#132-with-chrome-developer-tools)
+        - [1.3.2. Debugging With Chrome Developer Tools](#132-debugging-with-chrome-developer-tools)
+        - [1.3.3. Component Inspection with Augury](#133-component-inspection-with-augury)
     - [1.4. Simple Data Binding](#14-simple-data-binding)
         - [1.4.1. Label](#141-label)
         - [1.4.2. TextBox](#142-textbox)
@@ -77,9 +78,9 @@ ng serve
 It will run the server at http://localhost:4200
 
 
-## 1.3. Debugging
+## 1.3. Debugging and Inspection
 
-### 1.3.1. With WebStorm
+### 1.3.1. Debugging With WebStorm
 
 - In Chrome, Install **JetBrains IDE Support** Plugin (https://chrome.google.com/webstore/detail/jetbrains-ide-support/hmhgeddbohgjknpmjagkdomcpobmllji?hl=en)
 
@@ -101,7 +102,7 @@ It will run the server at http://localhost:4200
 - https://blog.jetbrains.com/webstorm/2017/01/debugging-angular-apps/
 -  https://www.youtube.com/watch?v=CdXoeVRN1JU
 
-### 1.3.2. With Chrome Developer Tools
+### 1.3.2. Debugging With Chrome Developer Tools
 
 - Serve the app with `ng serve`
 - In chrome, go to http://localhost:4200
@@ -114,6 +115,18 @@ It will run the server at http://localhost:4200
 
 - Set the breakpoints and reload the page.
 
+### 1.3.3. Component Inspection with Augury
+
+Angular Augury is a chrome extension which allows us to inspect our app's components, routes and modules at runtime.
+
+- Search for `Angular Augury` (currently at https://augury.angular.io/)
+- Install chrome extension
+- Run `ng serve` and go to http://localhost:4200
+- Right-click, Inspect, go to Augury tab in Chrome Dev Tools. It will show the app structure as below (example)
+
+![Augury] 
+
+[Augury]:images/Augury.png
 
 ## 1.4. Simple Data Binding
 
