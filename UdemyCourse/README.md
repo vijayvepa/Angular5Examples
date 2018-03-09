@@ -41,6 +41,7 @@
             - [1.10.3.2. Text Boxes](#11032-text-boxes)
             - [Binding Component Events](#binding-component-events)
         - [1.10.4. Two-Way Binding](#1104-two-way-binding)
+        - [HTML Substitution](#html-substitution)
     - [1.11. Built-in Directives](#111-built-in-directives)
         - [1.11.1. The ng-if Directive](#1111-the-ng-if-directive)
             - [1.11.1.1. Else Conditions](#11111-else-conditions)
@@ -621,6 +622,36 @@ export class AddServerComponent implements OnInit {
     ...
 }
 ```
+
+### HTML Substitution
+
+We can allow custom HTML to be sent from the component consumers using the `ng-content` directive.
+
+In the `cmp-databinding` project, `server-element.component.html` we added a placeholder for the consumer content as below:
+
+```html
+  <div class="panel-body">
+    <p>
+      ...
+      <ng-content></ng-content>
+    </p>
+  </div>
+```
+
+We send custom HTML from the `app.component.html` to this component as below:
+
+```html
+<app-server-element *ngFor="let serverEl of serverElements" [element]="serverEl" >
+        <p>My Content</p>
+      </app-server-element>
+```
+Notice the "inner HTML" we sent.
+
+This will be rendred for each app-server-element that is a child of current component, as shown below:
+
+![NgContent]
+
+[NgContent]:images/NgContent.png
 
 ## 1.11. Built-in Directives
 ### 1.11.1. The ng-if Directive

@@ -4,6 +4,7 @@
     <p>
       <strong *ngIf="element.type === 'server'" style="color: red">{{ element.content }}</strong>
       <em *ngIf="element.type === 'blueprint'" style="color:cornflowerblue">{{ element.content }}</em>
+      <ng-content></ng-content>
     </p>
   </div>
 </div>
