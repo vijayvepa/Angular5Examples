@@ -4,7 +4,7 @@
   <div class="row">
     <div class="col-xs-12">
       <app-server-element *ngFor="let serverEl of serverElements" [element]="serverEl" >
-        <p>My Content</p>
+        <p #customParagraph>My Content</p>
       </app-server-element>
     </div>
   </div>
