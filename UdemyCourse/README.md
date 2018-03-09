@@ -35,13 +35,14 @@
     - [1.10. Data Binding](#110-data-binding)
         - [1.10.1. String Interpolation](#1101-string-interpolation)
         - [1.10.2. Property Binding](#1102-property-binding)
-            - [Binding Component Properties](#binding-component-properties)
+            - [1.10.2.1. Binding Component Properties](#11021-binding-component-properties)
         - [1.10.3. Event Binding](#1103-event-binding)
             - [1.10.3.1. Buttons](#11031-buttons)
             - [1.10.3.2. Text Boxes](#11032-text-boxes)
-            - [Binding Component Events](#binding-component-events)
+            - [1.10.3.3. Binding Component Events](#11033-binding-component-events)
         - [1.10.4. Two-Way Binding](#1104-two-way-binding)
-        - [HTML Substitution](#html-substitution)
+        - [1.10.5. HTML Substitution](#1105-html-substitution)
+        - [1.10.6. Accessing View Elements](#1106-accessing-view-elements)
     - [1.11. Built-in Directives](#111-built-in-directives)
         - [1.11.1. The ng-if Directive](#1111-the-ng-if-directive)
             - [1.11.1.1. Else Conditions](#11111-else-conditions)
@@ -486,7 +487,7 @@ export class AddServerComponent implements OnInit {
 
 - This will rewrite the `class` attribute after 2 seconds to `col-sm-3 allowed`.
 
-#### Binding Component Properties
+#### 1.10.2.1. Binding Component Properties
 
 In `cmp-databinding` project, `server-element.component.ts` we add a property which can be bound from   `app.component.ts` as below:
 
@@ -545,7 +546,7 @@ This event can then be processed on the typescript code as shown below:
 NOTE: we can deduce the types by debugging with `console.log` and looking at the browser inspect window.
 
 
-#### Binding Component Events
+#### 1.10.3.3. Binding Component Events
 
 We can declare custom events on a component (see `cmp-databinding` project, `cockpit.component.ts`) as below:
 
@@ -623,7 +624,7 @@ export class AddServerComponent implements OnInit {
 }
 ```
 
-### HTML Substitution
+### 1.10.5. HTML Substitution
 
 We can allow custom HTML to be sent from the component consumers using the `ng-content` directive.
 
@@ -652,6 +653,50 @@ This will be rendred for each app-server-element that is a child of current comp
 ![NgContent]
 
 [NgContent]:images/NgContent.png
+
+### 1.10.6. Accessing View Elements
+
+We can access HTML elements by adding a `#name` to the tag and use the reference in event binding.
+
+For example, in `cmp-databinding` project, `cockpit-component.html`, we add a *local reference* to the server name input element as below:
+
+```html
+<input type="text" class="form-control" #serverNameInput>
+```
+
+We then use this reference in the event binding as shown below:
+
+```html
+<button
+      class="btn btn-primary"
+      (click)="onAddServer(serverNameInput.value)">Add Server</button>
+```
+
+In the same file, we define another local reference for `serverContent` as shown below:
+
+```html
+<input type="text" class="form-control" #serverContentInput>
+```
+
+We access this view element in the typescript code by using the `ViewChild` decorator, as shown below:
+
+```ts
+
+  @ViewChild('serverContentInput')
+  serverContentInput: ElementRef;
+
+
+  onAddServer(name: string ) {
+    ...
+      this.serverContentInput.nativeElement.value));
+  }
+
+```
+
+
+
+
+
 
 ## 1.11. Built-in Directives
 ### 1.11.1. The ng-if Directive
