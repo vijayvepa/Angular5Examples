@@ -1,0 +1,18 @@
+
+
+<div class="container">
+  <div class="row">
+    <app-game-control (gameEvent)="addNumber($event)"></app-game-control>
+  </div>
+  <br/>
+  <div class="row">
+    <div class="col-xs-6">
+      <app-odd *ngFor="let x of odds" [data]="x"></app-odd>
+    </div>
+    <div class="col-xs-6">
+      <app-even *ngFor="let x of evens" [data]="x"></app-even>
+    </div>
+  </div>
+</div>
+
+
